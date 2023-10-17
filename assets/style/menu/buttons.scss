@@ -1,0 +1,26 @@
+.menu-content {
+    &__btn {
+        color: rgba(255, 255, 255, 0.55);
+        font: {
+            family: 'Verdana';
+            variant: small-caps;
+        }
+        &:hover {
+            color: #fff;
+        }
+        &--inactive {
+            color: rgb(255, 0, 0);
+            &:hover {
+                color: rgba(255, 0, 0, .5);
+            }
+        }
+    }
+}
+
+.menu {
+    &__btn {
+        transition: {
+            duration: 0.2s;
+        }
+    }
+}

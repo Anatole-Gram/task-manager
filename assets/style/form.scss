@@ -1,0 +1,30 @@
+.form {
+    &-check-item {
+        display: grid;
+        grid-template-rows: max-content max-content;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+        grid-template-areas: 
+        'label message'
+        'input input';
+        &__label {
+            grid-area: label;
+            @include rowBevel($rowWhite);
+            border-radius: 4px 4px 4px 0;
+
+        }
+        &__message {
+            grid-area: message;
+            align-self: self-end;
+            justify-self: end;
+
+
+        }
+        &__input {
+            grid-area: input;
+            background: $rowWhite;
+            border-radius: 0 4px 4px 4px;
+        }
+    }
+}
+

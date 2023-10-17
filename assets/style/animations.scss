@@ -1,0 +1,203 @@
+@keyframes listItemAnimationEnter {
+    0% {
+      opacity: .5;
+      color: transparent;
+      transform: rotateX(90deg)
+    };
+    25% {
+      color: inherit;
+      
+    };
+    50% {
+      transform: rotateX(0);
+      opacity: 1;
+    };
+    100% {
+      opacity: 1;
+    }
+}
+
+@keyframes listItemAnimationLeave {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    // color: transparent;
+  }
+  50% {
+    color: transparent;
+  }
+  100% {
+    color: transparent;
+    transform: rotateX(90deg);
+  }
+}
+
+@keyframes listItemAnimationBtnLeave {
+  50% {
+    opacity: 0.5;
+    color: transparent;
+  }
+  100% {
+    opacity: 0;
+    color: transparent;
+    transform: scaleX(0);
+  }
+}
+//preloader
+@keyframes preloaderCirclePoint {
+  0% { transform: scale(1); opacity: 0;};
+  50% { transform: scale(1.5); opacity: 1;};
+  100% {transform: scale(1); opacity: 0;}
+}
+@keyframes preloaderOverlay {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+.preloader-averlay-leave-active {
+  animation: {
+    name: preloaderOverlay;
+    duration: 1s;
+    timing-function: ease-out;
+  };
+}
+//main content
+@keyframes mainContentEnter {
+  0% {opacity: 0;}
+  100% {opacity: 1}
+}
+
+.main-content-enter-active {
+  animation: {
+    name: mainContentEnter;
+    duration: 0.5s;
+    timing-function: ease;
+  };
+}
+
+// v-enter-active: Означает активное состояние анимации появления элемента.
+//  Этот класс остаётся на элементе в течение всей анимации появления. 
+// Он добавляется перед вставкой элемента, а удаляется после завершения перехода или анимации. 
+// Этот класс можно использовать для установки длительности, задержки или функции плавности (easing curve) анимации появления.
+
+// v-leave-active: Означает активное состояние анимации исчезновения. 
+// Этот класс остаётся на элементе в течение всей анимации исчезновения. 
+// Он добавляется при вызове анимации исчезновения, а удаляется после завершения перехода или анимации.
+// Этот класс можно использовать для установки длительности, задержки или функции плавности (easing curve) анимации исчезновения.
+
+.list-enter-active {
+  opacity: 0;
+  animation: {
+    name: listItemAnimationEnter;
+    duration: 1s;
+    timing-function: ease-in-out;
+};
+}
+.list-leave-active {
+  animation: {
+    name: listItemAnimationLeave;
+    duration: 1s;
+    timing-function: ease-in-out;
+    delay: 0s !important;
+  };
+  // animation-name: listItemAnimationLeave;
+  // animation-duration: 1s;
+  // animation-delay: 0s !important;
+}
+// .list-enter-active,
+// .list-leave-active {
+//   transition: all 1s ease-out;
+// }
+
+// v-enter-from: Означает начало анимации появления элемента. 
+// Этот класс добавляется перед вставкой элемента, а удаляется в следующем фрейме после вставки.
+
+// v-leave-to: Означает завершение анимации исчезновения элемента. 
+// Добавляется в следующем фрейме после вызова анимации исчезновения (тогда же удаляется v-leave-from), 
+// а удаляется после завершения перехода или анимации.
+
+.list-enter-from {
+  // opacity: 0;
+}
+// .list-enter-from,
+// .list-leave-to {
+//   transform: scaleX(0);
+//   color: transparent;
+// }
+// v-leave-from: Означает начало анимации исчезновения элемента. 
+// Добавляется сразу после вызова анимации исчезновения, а удаляется в следующем фрейме после этого.
+.list-leave-from {
+
+}
+// v-enter-to: Означает завершение анимации появления элемента. 
+// Добавляется в следующем фрейме после вставки элемента (тогда же удаляется v-enter-from), 
+// а удаляется после завершения перехода или анимации.
+.list-enter-to {
+    //  opacity: 1;
+}
+
+.interactive-list-enter-active {
+  opacity: 0;
+  animation: {
+    name: listItemAnimationEnter;
+    duration: 0.5s;
+    timing-function: ease-in-out;
+};
+}
+.interactive-list-leave-active {
+  animation: {
+    name: listItemAnimationLeave;
+    duration: 0.5s;
+    timing-function: ease-in-out;
+};
+  & button, div {
+
+    animation: {
+      name: listItemAnimationBtnLeave;
+      duration: 0.25s;
+      timing-function: ease-in;
+      fill-mode: forwards;
+    };
+  }
+}
+
+
+.preloader-point-enter-active {
+  animation: { 
+    name: preloaderCirclePoint;
+    duration: 0.5s;
+    timing-function: ease-in-out;
+    iteration-count: infinite;
+};
+}
+
+.point-enter-active, 
+.point-leave-active {
+  animation: {
+    name: pointAnimation;
+    duration: 1s;
+  };
+}
+
+.modal-standart {
+  &-enter-active,
+  &-leave-active {
+    animation: {
+      name: modalStandart;
+      duration: 0.3s;
+    }
+  }
+  &-enter-active {
+    animation: {
+      timing-function: ease-in;
+    }
+  }
+  &-leave-active {
+    animation: {
+      timing-function: ease-out;
+      direction: reverse;
+    }
+  }
+}
+
+

@@ -1,0 +1,17 @@
+.slider {
+
+    &__btn {
+
+        &-close {
+            margin: 0 auto;
+            font: {
+                size: 14px;
+                family: 'Roboto';
+            }
+            color: #ffffff8c;
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+}

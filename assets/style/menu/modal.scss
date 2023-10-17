@@ -1,0 +1,16 @@
+@keyframes modalStandart {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+
+.modal {
+    &-standart {
+        opacity: 0;
+        animation: {
+            name: modalStandart;
+            duration: 0.25s;
+            timing-function: ease;
+            fill-mode: forwards;
+        };
+    }
+}
