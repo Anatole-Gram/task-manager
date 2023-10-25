@@ -33,6 +33,7 @@
         grid-template-rows: 35px 1fr;
         grid-template-columns: 1fr;
     &__menu {
+        position: relative;
         grid-area: menu;
         width: 100%;
         display: flex;

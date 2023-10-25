@@ -6,7 +6,8 @@
                 @filterForSelected="users.filteredForSelected" />
         </template>
 
-        <SliderMenu />
+        <SliderMenu
+            sliderName="usersSlider" />
         
     </div>
 </template>
@@ -19,6 +20,9 @@ const users = useUsers()
 const props = defineProps({
     slider: {
         type: [Boolean]
+    }, 
+    sliderName: {
+        ttype: [String]
     }
 })
 const emit = defineEmits(['close'])
@@ -26,5 +30,7 @@ const emit = defineEmits(['close'])
 </script>
 
 <style lang="scss" scoped>
-
+p {
+    color: red;
+}
 </style>

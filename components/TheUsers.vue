@@ -3,20 +3,11 @@
     <div class="content container">
 
         <UsersMenu 
-            @close="users.slider=false"
+            @close="users.slider=false" 
             :slider="slider" />
 
-        <template v-if="slider"> 
-
-            <ProfileInfo  :user="currentItem" />
-
-            <SliderFullScreen 
-                :index="users.currentIndex" 
-                :length="list.length-1" 
-                @changeIndex="setCurent"
-            />
-
-        </template>
+        <ProfileInfo v-if="slider" 
+            :user="currentItem" />
 
         <UsersList v-else 
             :list="list" 
@@ -31,12 +22,8 @@
 import { useUsers } from "@/store/users";   
     const users = useUsers();
     
-    
-    const list = computed (() => users.filteredList)   
-    const selected = computed(()=> users.selected)
-
-    const {slider, closeSlider, currentItem, setCurent} = useSlider(users)
-    provide('slider', {slider, closeSlider})
+    const {list, slider, closeSlider, currentIndex, currentItem, setCurrent} = useSlider(users)
+    provide('usersSlider', {slider, closeSlider, currentIndex, setCurrent})
 
     onUnmounted(() => {
         // reset the filter by users

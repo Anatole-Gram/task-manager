@@ -25,10 +25,6 @@
             type: [Object]
         }
     })
-
-
-    const imgErr = useImgNoLoad
-
 </script>
 
 <style lang="scss">

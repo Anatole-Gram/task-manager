@@ -50,6 +50,9 @@ export const useTodos = defineStore('todos',{
         },
         resetSelected() {
             this.selectedList = []
+        },
+        setCurrentInddex(index) {
+            this.currentIndex = index
         }
     },
     getters: {

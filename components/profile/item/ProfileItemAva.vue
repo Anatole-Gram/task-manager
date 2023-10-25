@@ -1,6 +1,6 @@
 <template>
     <div class="box">
-        <img :src="`http://project-lucy.space/${url}`" width="200" height="200" alt="user photo"
+        <img :src="`http://project-lucy.fun/${url}`" width="200" height="200" alt="user photo"
             @error="imgErr($event, '/img/img-nf.jpg')">
     
         <button v-if="editor" v-text="'выберите файл'"

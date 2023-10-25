@@ -31,6 +31,9 @@ export const useUsers = defineStore('users', {
             this.slider = !this.slider
             this.currentIndex = index
         },
+        setCurrentIndex(index) {
+            this.currentIndex = index
+        }
     },
     getters: {
         getUsersList() {
