@@ -90,3 +90,29 @@ $mainBlack: #212529;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 100%);
 }
 //for user info
+
+//buttons & links 
+$btnColor: rgba(255, 255, 255, 0.5490196078);
+$btnColorActive: #fff;
+$btnDuration: .25s;
+
+
+@mixin standartBtn {
+    color: $btnColor;
+    & svg path {
+        fill: $btnColor;
+    }
+    transition: {
+        duration: $btnDuration;
+    }
+    &:hover {
+        color: $btnColorActive;
+        & svg path {
+            fill: $btnColorActive;
+            transition: {
+                duration: $btnDuration;
+            }
+        }
+    }
+
+}

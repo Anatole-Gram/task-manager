@@ -16,7 +16,6 @@ export default defineNuxtConfig({
         '@/assets/style/normalize.scss',
         '@/assets/style/main.scss',
         '@/assets/style/lists.scss',
-        '@/assets/style/slider.scss',
         '@/assets/style/menu/buttons.scss',
         '@/assets/style/menu/modal.scss',
         '@/assets/style/profile/profile.scss',

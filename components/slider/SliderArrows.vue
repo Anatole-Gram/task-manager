@@ -27,9 +27,6 @@
             height: 100%;
             z-index: 1;
             display: grid;
-            grid-template-columns: 50px 1fr 50px;
-            grid-auto-rows: 100%;
-            grid-template-areas: 'leftBtn centralArea rightBtn';
         }
         &--left {
             grid-area: leftBtn;
@@ -37,14 +34,6 @@
         }
         &--right {
             grid-area: rightBtn;
-        }
-    }
-</style>
-
-<style lang="scss">
-    .arrow {
-        svg path {
-            fill: red;
         }
     }
 </style>

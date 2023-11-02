@@ -4,12 +4,6 @@
     </button>
 </template>
 <style lang="scss" scoped>
-    button {
-        opacity: 0.8;
-        &:hover {
-            opacity: 1;
-        }
-    }
     svg {
         width: 100%;
         height: 100%;
