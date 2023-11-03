@@ -1,18 +1,18 @@
 import { defineStore } from "pinia";
 import { getJson } from "./storeApi/actions"
+import { sliderStates, sliderActions} from "./modules/slider"
 
 
 
 
 export const useTodos = defineStore('todos',{
     state: () => ({
-        url: 'http://project-lucy.space/api/',
+        url: 'http://project-lucy.fun/api/',
         list: {forUser:[], fromUser: []},
         lastUpd: { comment: '', createdAt: '', destination: 0, id: 0, sender: 0, status: false, taskId: 0, title: '', updatedAt: '' },
         selectedList: [],
         condition: false,
-        slider: false,
-        currentIndex: 0,
+        ...sliderStates
     }),
     actions: {
         async getTodos(id) {
@@ -44,16 +44,10 @@ export const useTodos = defineStore('todos',{
         async updStatus(id) {
             await fetch(`${this.url}todos/upd-status?id=${id}`, { method: "PUT" })
         },
-        sliderToggle(index) {
-            this.slider = !this.slider
-            this.currentIndex = index
-        },
         resetSelected() {
             this.selectedList = []
         },
-        setCurrentInddex(index) {
-            this.currentIndex = index
-        }
+        ...sliderActions
     },
     getters: {
         filteredList() {

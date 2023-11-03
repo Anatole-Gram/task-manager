@@ -1,5 +1,6 @@
 import {defineStore} from "pinia";
 import { getJson } from "./storeApi/actions";
+import {sliderStates, sliderActions} from "./modules/slider";
 
 export const useUsers = defineStore('users', {
     state: ()=> ({
@@ -7,8 +8,7 @@ export const useUsers = defineStore('users', {
         filteredList: [],
         usersCard: {},
         selected: new Set(),
-        slider: false,
-        currentIndex: 0,
+        ...sliderStates
     }),
     actions: {
         async getUsers() {
@@ -27,13 +27,7 @@ export const useUsers = defineStore('users', {
         filteredForSelected(set) {
             this.filteredList = this.list.filter(item => set.has(item.id))
          },
-        sliderToggle(index) {
-            this.slider = !this.slider
-            this.currentIndex = index
-        },
-        setCurrentIndex(index) {
-            this.currentIndex = index
-        }
+        ...sliderActions
     },
     getters: {
         getUsersList() {
