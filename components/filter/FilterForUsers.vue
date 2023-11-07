@@ -1,13 +1,13 @@
 <template>
 <div class="filter-wraper">
     <button @click="showMenu=!showMenu" class="menu__btn">список пользоватей</button>
-    <button @click="filterAction" class="menu__btn"> {{ `${selected.size >= list.length ? 'сбросить' : 'выбрать всех'}`}} </button>
+    <button @click="filterAction" class="menu__btn"> {{ `${selectedIsFull ? 'сбросить' : 'выбрать всех'}`}} </button>
 
     <transition name="modal-standart">
     <div v-if="showMenu" class="filter-users">
         <SearchByName
-            @startSearch="searchByname"
-            @update:searchState="updateSearchState"
+            @startSearch="filterListByName"
+            @update:searchState="updSearchByName"
             placeholder="Пользователь"/>
         <ul 
             :style="{animationDelay: 0.25+'s'}"
@@ -30,35 +30,35 @@
 
 <script setup>
 import { useUsers } from "@/store/users";
-    const emit = defineEmits(["filterForSelected"])
-    const users = useUsers()
+import { useFilters } from "@/store/filters";
+import { storeToRefs } from "pinia";
 
+const users = useUsers()
+const filter = useFilters()
+
+const emit = defineEmits(["filterForSelected"])
+
+const { searchByName, selected, selectedIsFull } = storeToRefs(filter)
+const { updSearchByName, select, setLimitForSelection, determinateSelectedIsFull, resetSelected, selectAll } = filter
+
+const listBySearch = ref([])
 const showMenu = ref(false)
 
+watch( () => showMenu.value, show => !show && updSearchByName(false))
+watch(selected.value, (newVal, oldVal) => { emit('filterForSelected', newVal); determinateSelectedIsFull() })
 
+const filterAction = () => { selectedIsFull.value ? resetSelected() : selectAll(list.value) }
+const filterListByName = (exp) => { listBySearch.value = users.list.filter(user=> exp.test(user.name||user.surname)) }
 
-const selected = ref(new Set)
-watch(selected.value, (newVal, oldVal) => { emit('filterForSelected', newVal)})
+const list = computed(() => searchByName.value ? listBySearch.value : users.list)
+watch(list, (newVal, oldVal) => {setLimitForSelection(newVal.length)})
 
-const filterAction = () => {
-    selected.value.size >= list.value.length ?
-    selected.value.clear() :
-    list.value.forEach(item => selected.value.add(item.id))
-}
-const select = (id) => selected.value.has(id) ? selected.value.delete(id) : selected.value.add(id)
-    //search by name
-const search = reactive({
-    list: [],
-    state: false,
-})
-//monitors the status of the menu to reset the search mode
-watch( () => showMenu.value, show => !show && (search.state = false))
-const updateSearchState = state => {search.state = Boolean(state)}
-const searchByname = (exp) => {
-    search.list = users.list.filter(user=> exp.test(user.name||user.surname))
-}
-const list = computed(() => search.state ? search.list : users.list)
-
+onUnmounted(() => {
+        // reset the filter by users
+    // users.resetSelected()
+        //reset fiters
+    filter.$reset()
+    })
 </script>
 
 <style lang="scss" scoped>

@@ -4,10 +4,12 @@
         :class="{'item-active': selected}">
         <h5> {{ user.name }} {{ user.surname }}</h5>
 
+        <transition name="list-item-menu">
         <div class="list__item-menu box-black" v-show="selected">
-                <button @click="emit('removeFromList', user.id)">скрыть</button>
+                <button @click="emit('removeFromList', user.id)">убрать</button>
                 <button @click="emit('sliderReverse')">открыть</button>
         </div>
+        </transition>
         <span> {{ user.position }} </span>
     </li>
 

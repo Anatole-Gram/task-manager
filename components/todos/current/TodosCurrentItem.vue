@@ -1,7 +1,7 @@
 <template>
     <div class="content__main">
         <div class="todo box">
-            <TodosCurrentInfo :userId="1" :date="item.createdAt" />
+            <TodosCurrentInfo :userId="item.sender" :date="item.createdAt" />
             <TodosCurrentTodo :title="item.title" :comment="item.comment" />
             <button 
                 @click="emit('updStatus', item.id), item.status=!item.status"
@@ -19,7 +19,6 @@
         },
     })
     const emit = defineEmits(['updStatus'])
-
 </script>
 
 <style lang="scss" scoped>

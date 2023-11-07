@@ -7,7 +7,6 @@ import { sliderStates, sliderActions} from "./modules/slider"
 
 export const useTodos = defineStore('todos',{
     state: () => ({
-        url: 'http://project-lucy.fun/api/',
         list: {forUser:[], fromUser: []},
         lastUpd: { comment: '', createdAt: '', destination: 0, id: 0, sender: 0, status: false, taskId: 0, title: '', updatedAt: '' },
         selectedList: [],
@@ -42,7 +41,7 @@ export const useTodos = defineStore('todos',{
             this.selectedList = this.list.forUser.filter(todo => array.has(todo.sender))
         },
         async updStatus(id) {
-            await fetch(`${this.url}todos/upd-status?id=${id}`, { method: "PUT" })
+            await fetch(`${useApiUrl()}todos/upd-status?id=${id}`, { method: "PUT" })
         },
         resetSelected() {
             this.selectedList = []

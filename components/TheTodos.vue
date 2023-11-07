@@ -1,33 +1,28 @@
 <template>
+
     <div class="content container">
         <TodosMenu 
             :slider="slider"
             @closeSlider="todos.slider=false" />
-        <template v-if="slider">
-            <TodosCurrentItem 
-                :item="currentItem" 
-                @updStatus="todos.updStatus" /> 
-            <SliderFullScreen
-                :index="todos.currentIndex" 
-                :length="list.length-1" 
-                @changeIndex="setCurent"
-             />  
-        </template>
+
+        <TodosCurrentItem v-if="slider"
+            :item="currentItem" 
+            @updStatus="todos.updStatus" /> 
+
         <TodosList v-else 
             :list="list"
             :sliderFrom="todos.sliderToggle" 
             :updStatus="todos.updStatus" />
     </div>
+    
 </template>
 
 <script setup>
     import {useTodos} from '@/store/todos';
     const todos = useTodos()
-    const list = computed(() => todos.filteredList)
 
-    const {slider, closeSlider, currentItem, setCurent} = useSlider(todos)
-    provide('slider', {slider, closeSlider})
-
+    const {list, slider, closeSlider, currentIndex, currentItem, setCurrent} = useSlider(todos)
+    provide('todosSlider', {slider, closeSlider, currentIndex, setCurrent})
 
     onMounted( async () => {
         await useTodoInit(localStorage.getItem('userId'))

@@ -1,0 +1,1 @@
+export const useApiUrl = () => 'http://project-lucy.fun/api/'
