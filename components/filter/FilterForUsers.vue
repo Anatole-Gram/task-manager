@@ -1,6 +1,6 @@
 <template>
 <div class="filter-wraper">
-    <button @click="showMenu=!showMenu" class="menu__btn">список пользоватей</button>
+    <button @click="showMenu=!showMenu" class="menu__btn">список пользоватей: {{ selectedIsFull }}</button>
     <button @click="filterAction" class="menu__btn"> {{ `${selectedIsFull ? 'сбросить' : 'выбрать всех'}`}} </button>
 
     <transition name="modal-standart">
@@ -53,12 +53,6 @@ const filterListByName = (exp) => { listBySearch.value = users.list.filter(user=
 const list = computed(() => searchByName.value ? listBySearch.value : users.list)
 watch(list, (newVal, oldVal) => {setLimitForSelection(newVal.length)})
 
-onUnmounted(() => {
-        // reset the filter by users
-    // users.resetSelected()
-        //reset fiters
-    // filter.$reset()
-    })
 </script>
 
 <style lang="scss" scoped>

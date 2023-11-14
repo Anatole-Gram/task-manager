@@ -19,6 +19,7 @@
 
 <script setup>
     import {useTodos} from '@/store/todos';
+    import { useFilters } from '@/store/filters';
     const todos = useTodos()
 
     const {list, slider, closeSlider, currentIndex, currentItem, setCurrent} = useSlider(todos)
@@ -30,7 +31,7 @@
 
     onUnmounted(() => {
         //reset the filter by users
-        todos.resetSelected()
+        todos.resetFilteredByUsers()
     })
 </script>
 

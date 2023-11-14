@@ -17,12 +17,17 @@
 </template>
 
 <script setup>
-import { useUsers } from "@/store/users";   
+import { useUsers } from "@/store/users";  
+import { useFilters } from "@/store/filters"; 
     const users = useUsers();
     
     const {list, slider, closeSlider, currentIndex, currentItem, setCurrent} = useSlider(users)
     provide('usersSlider', {slider, closeSlider, currentIndex, setCurrent})
 
+    onUnmounted(() => {
+        //reset the filter by users
+        users.resetFilteredByUsers()
+    })
 </script>
 
 <style lang="scss">

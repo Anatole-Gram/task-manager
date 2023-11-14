@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import { useUsers } from "./users";
 
 export const useFilters = defineStore('filters', {
     state: () => ({
@@ -22,21 +21,22 @@ export const useFilters = defineStore('filters', {
             this.selected.clear()
         },
         determinateSelectedIsFull() {
-            this.selectedIsFull = this.selected.size >= this.limitForSelection;
+            this.selectedIsFull = this.selected.size > this.limitForSelection;
         },
         updSearchByName(condition) {
             this.searchByName = Boolean(condition)
         },
         setLimitForSelection(size) {
-            this.limitForSelection = size
+            this.limitForSelection = size-1
             this.determinateSelectedIsFull()
         },
-        $reset(){
-            this.selected = new Set()
-            this.limitForSelection = 0
-            this.selectedIsFull = false
-            this.condition = null
-            this.searchByName = false
+        $reset() {
+            this.selected.clear();
+            this.limitForSelection = 0;
+            this.selectedIsFull = false;
+            this.searchByName = false;
+            this.condition = null;
+
         }
     }
 })

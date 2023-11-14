@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { getJson } from "./storeApi/actions"
 import { sliderStates, sliderActions} from "./modules/slider"
+import { filterStates, filterActions } from "./modules/filter"
 
 
 
@@ -9,8 +10,9 @@ export const useTodos = defineStore('todos',{
     state: () => ({
         list: {forUser:[], fromUser: []},
         lastUpd: { comment: '', createdAt: '', destination: 0, id: 0, sender: 0, status: false, taskId: 0, title: '', updatedAt: '' },
-        filteredByUsers: [],
+        // filteredByUsers: [],
         condition: false,
+        ...filterStates,
         ...sliderStates
     }),
     actions: {
@@ -40,12 +42,13 @@ export const useTodos = defineStore('todos',{
         async updStatus(id) {
             await fetch(`${useApiUrl()}todos/upd-status?id=${id}`, { method: "PUT" })
         },
-        filterByUsers(set) {
-            this.filteredByUsers = this.list.forUser.filter(todo => set.has(todo.sender))
-        },
-        resetFilteredByUsers() {
-            this.filteredByUsers = []
-        },
+        // filterByUsers(set) {
+        //     this.filteredByUsers = this.list.forUser.filter(todo => set.has(todo.sender))
+        // },
+        // resetFilteredByUsers() {
+        //     this.filteredByUsers = []
+        // },
+        ...filterActions,
         ...sliderActions
     },
     getters: {         
