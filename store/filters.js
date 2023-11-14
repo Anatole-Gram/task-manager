@@ -11,6 +11,7 @@ export const useFilters = defineStore('filters', {
     }),
 
     actions: {
+    //used by the users filter
         select(id) {
             this.selected.has(id) ? this.selected.delete(id) : this.selected.add(id)
         },
@@ -36,7 +37,6 @@ export const useFilters = defineStore('filters', {
             this.selectedIsFull = false
             this.condition = null
             this.searchByName = false
-            useUsers().resetFiltredList()
         }
     }
 })

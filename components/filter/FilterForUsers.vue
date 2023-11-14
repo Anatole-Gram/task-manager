@@ -57,7 +57,7 @@ onUnmounted(() => {
         // reset the filter by users
     // users.resetSelected()
         //reset fiters
-    filter.$reset()
+    // filter.$reset()
     })
 </script>
 

@@ -7,7 +7,9 @@ import {sliderStates, sliderActions} from "./modules/slider";
 export const useUsers = defineStore('users', {
     state: ()=> ({
         list: [],
-        filteredList: [],
+        // filteredList: [],
+        // selectedList: [],
+        filteredByUsers: [],
         usersCard: {},
         ...sliderStates
     }),
@@ -15,16 +17,19 @@ export const useUsers = defineStore('users', {
         async getUsers() {
             this.list = await getJson('users', {method: "GET"})
         },
-        resetFiltredList() {
-            this.filteredList = []
-        },
-        filteredForSelected(set) {
-            this.filteredList = this.list.filter(item => set.has(item.id))
+        filterByUsers(set) {
+            this.filteredByUsers = this.list.filter(user => set.has(user.id))
+         },
+         resetFilteredByUsers() {
+            this.filteredByUsers = []
          },
         ...sliderActions
     },
     getters: {
         getUsersList: state => state.list ,
-        getUserById: state => id => state.list.find(user => user.id === id)
+        getUserById: state => id => state.list.find(user => user.id === id),
+        filteredList() {
+            return this.filteredByUsers
+        }
     }
 })

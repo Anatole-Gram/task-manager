@@ -2,7 +2,7 @@
     <div class="content__menu">
 
         <template v-if="!slider">
-        <FilterForUsers @filterForSelected="todos.filterForSelected" />
+        <FilterForUsers @filterForSelected="todos.filterByUsers" />
         <FilterForCondition :condition="menuCondition"  @returnCondition="(property)=>condition=property" />
         </template>
 

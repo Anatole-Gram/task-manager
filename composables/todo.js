@@ -1,5 +1,6 @@
 import { useUsers } from "@/store/users";
 import { useTodos } from "@/store/todos";
+import { useFilters } from "~~/store/filters";
 
 export const useTodoSenderIdentifier = () => { 
     const users = useUsers()
@@ -22,8 +23,7 @@ export const useTodoSenderIdentifier = () => {
 
 export const useTodoInit = async (id) => {
     const todos = useTodos()
-    const users = useUsers()
     await todos.getTodos(id)
-    todos.filterForSelected(users.selected)
+    todos.filterByUsers(useFilters().selected)
 }
 

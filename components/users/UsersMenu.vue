@@ -3,7 +3,7 @@
 
         <template v-if="!slider">
             <FilterForUsers 
-                @filterForSelected="users.filteredForSelected" />
+                @filterForSelected="users.filterByUsers" />
         </template>
 
         <SliderMenu

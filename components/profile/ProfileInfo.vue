@@ -3,7 +3,7 @@
         <div class="profile">
             <section class="profile__main">
                 <ProfileItemAva :url="user.img" />
-                <ProfileItemInfo :user="user" :editor-state="false"/>
+                <ProfileItemInfo :user="user" :editor-state="false" />
             </section>
 
             <section class="profile__additional box">
@@ -11,7 +11,7 @@
             </section>
 
             <section class="profile__note box">
-                <ProfileItemNote :note="user.note" :editor-state="false"/>    
+                <ProfileItemNote :note="user.note" :editor-state="false" />    
             </section>
             
         </div>
@@ -25,6 +25,10 @@
             type: [Object]
         }
     })
+
+    // watch(() => props.user, (newVal, oldVal) => {
+    //     console.log(`USER: ${newVal}`)
+    // })
 </script>
 
 <style lang="scss">

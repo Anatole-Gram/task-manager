@@ -4,15 +4,18 @@
 <ContainerMainContent
     :loader="loader">
     <ProfileMenu @editorToggle="editor=!editor" :editor="editor" :updateAllowed="updateAllowed" @update="()=> {updateProfile(draftProfile); editor=false}"/>
-    <ProfileInfo v-if="!editor" :user="profile.user"/>
+    <ProfileInfo v-if="!editor" :user="user"/>
     <ProfileEditor v-else />
 </ContainerMainContent>
 
 </template>
 
 <script setup>
-    import { useProfile } from '@/store/profile';
+import { useProfile } from '@/store/profile';
+import { storeToRefs } from 'pinia';
     const profile = useProfile()
+    
+    const {user} = storeToRefs(profile)
 
     // Menu states
     const editor = ref(false)

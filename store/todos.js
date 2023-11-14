@@ -9,7 +9,7 @@ export const useTodos = defineStore('todos',{
     state: () => ({
         list: {forUser:[], fromUser: []},
         lastUpd: { comment: '', createdAt: '', destination: 0, id: 0, sender: 0, status: false, taskId: 0, title: '', updatedAt: '' },
-        selectedList: [],
+        filteredByUsers: [],
         condition: false,
         ...sliderStates
     }),
@@ -37,24 +37,24 @@ export const useTodos = defineStore('todos',{
         setCondition(payload) {
             this.condition = payload.prop
         },
-        filterForSelected(array) {
-            this.selectedList = this.list.forUser.filter(todo => array.has(todo.sender))
-        },
         async updStatus(id) {
             await fetch(`${useApiUrl()}todos/upd-status?id=${id}`, { method: "PUT" })
         },
-        resetSelected() {
-            this.selectedList = []
+        filterByUsers(set) {
+            this.filteredByUsers = this.list.forUser.filter(todo => set.has(todo.sender))
+        },
+        resetFilteredByUsers() {
+            this.filteredByUsers = []
         },
         ...sliderActions
     },
-    getters: {
+    getters: {         
         filteredList() {
             let res = []
-            if(this.selectedList.length) {
+            if(this.filteredByUsers.length) {
                 if(this.condition !== null) {
-                    res = this.selectedList.filter(todo => (todo.status === this.condition))
-                } else  res = this.selectedList 
+                    res = this.filteredByUsers.filter(todo => (todo.status === this.condition))
+                } else  res = this.filteredByUsers 
             }
             return res
         }
