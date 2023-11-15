@@ -30,6 +30,10 @@ export const useFilters = defineStore('filters', {
             this.limitForSelection = size-1
             this.determinateSelectedIsFull()
         },
+    //used by the conditions filter
+        setCondition(condition) {
+            this.condition = condition
+        },
         $reset() {
             this.selected.clear();
             this.limitForSelection = 0;
@@ -38,5 +42,6 @@ export const useFilters = defineStore('filters', {
             this.condition = null;
 
         }
-    }
+    }, 
+
 })

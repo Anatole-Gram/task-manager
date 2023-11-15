@@ -7,7 +7,6 @@ import { filterStates, filterActions } from "./modules/filter";
 export const useUsers = defineStore('users', {
     state: ()=> ({
         list: [],
-        // filteredByUsers: [],
         usersCard: {},
         ...filterStates,
         ...sliderStates
@@ -16,12 +15,6 @@ export const useUsers = defineStore('users', {
         async getUsers() {
             this.list = await getJson('users', {method: "GET"})
         },
-        // filterByUsers(set) {
-        //     this.filteredByUsers = this.list.filter(user => set.has(user.id))
-        //  },
-        //  resetFilteredByUsers() {
-        //     this.filteredByUsers = []
-        //  },
         ...filterActions,
         ...sliderActions
     },

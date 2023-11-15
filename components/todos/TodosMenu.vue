@@ -2,8 +2,8 @@
     <div class="content__menu">
 
         <template v-if="!slider">
-        <FilterForUsers @filterForSelected="todos.filterByUsers" />
-        <FilterForCondition :condition="menuCondition"  @returnCondition="(property)=>condition=property" />
+        <FilterForUsers @filterForSelected="filterByUsers" />
+        <FilterForCondition :conditionMap="conditionMap"  @returnCondition="(property)=>condition=property" />
         </template>
 
         <SliderMenu 
@@ -13,22 +13,18 @@
 </template>
 
 <script setup>
-    import { useTodos } from "@/store/todos"
+import { useTodos } from "@/store/todos"
 
-const props = defineProps({
-    slider: {
-        type: [Boolean]
-    }, 
-    sliderName: {
-        ttype: [String]
-    }
-})
-
-    const todos = useTodos()
-
-    const menuCondition = reactive({
-        name: ['все', 'завершено', 'не завершено'],
-        prop: [null, true, false]
+    const props = defineProps({
+        slider: {
+            type: [Boolean]
+        }, 
+        sliderName: {
+            ttype: [String]
+        }
     })
-    const condition =  toRef(todos, 'condition')
+
+    const { filterByUsers } = useTodos()
+
+    const conditionMap = ref(new Map([[null, 'все'], [true, 'завершено'], [false, 'не завершено']]))
 </script>

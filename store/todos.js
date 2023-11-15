@@ -10,7 +10,6 @@ export const useTodos = defineStore('todos',{
     state: () => ({
         list: {forUser:[], fromUser: []},
         lastUpd: { comment: '', createdAt: '', destination: 0, id: 0, sender: 0, status: false, taskId: 0, title: '', updatedAt: '' },
-        // filteredByUsers: [],
         condition: false,
         ...filterStates,
         ...sliderStates
@@ -37,17 +36,12 @@ export const useTodos = defineStore('todos',{
         },
         
         setCondition(payload) {
+    //moved to filters store
             this.condition = payload.prop
         },
         async updStatus(id) {
             await fetch(`${useApiUrl()}todos/upd-status?id=${id}`, { method: "PUT" })
         },
-        // filterByUsers(set) {
-        //     this.filteredByUsers = this.list.forUser.filter(todo => set.has(todo.sender))
-        // },
-        // resetFilteredByUsers() {
-        //     this.filteredByUsers = []
-        // },
         ...filterActions,
         ...sliderActions
     },

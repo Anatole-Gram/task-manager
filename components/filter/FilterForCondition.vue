@@ -1,5 +1,5 @@
 <template>
-    <div class="filter-wraper">
+    <!-- <div class="filter-wraper">
         <button @click="showMenu=!showMenu"> статус: {{ selected.name }} </button>
         <ul v-show="showMenu" class="box-black">
             <li v-for="(val, index) in condition.name" :key="index">
@@ -13,24 +13,42 @@
                     :id="`condition${val}`">
             </li>
         </ul>
+    </div> -->
+    <div class="filter-wraper">
+        <button @click="showMenu=!showMenu"> статус: {{ conditionMap.get(condition) }} </button>
+        <ul v-show="showMenu" class="box-black">
+            <li v-for="(val, index) in conditionMap.entries()" :key="index">
+                <label :for="`condition${val[0]}`"
+                    :class="{'selected-item': val[0]===condition}">
+                        {{ val[1] }}
+                </label>
+                <input type="radio" name="condition" 
+                    :value="val[0]" 
+                    @change="setCondition(val[0])"
+                    :id="`condition${val[0]}`">
+            </li>
+        </ul>
     </div>
 </template>
 
 <script setup>
+import { storeToRefs } from "pinia"
+import {useFilters} from "@/store/filters"
+
     const props = defineProps({
-        condition: {
-            type: [Object]
+        conditionMap: {
+            type: [Map]
         }
     })
-    const emit = defineEmits(['returnCondition'])
-    const showMenu = ref(true)
-    const position = ref(0)
 
-    const selected = computed(() => {
-        showMenu.value = false
-        emit('returnCondition', props.condition.prop[position.value])
-        return { name: props.condition.name[position.value], prop: props.condition.prop[position.value] }
-    })
+    const filter =  useFilters()
+
+    const showMenu = ref(false)
+
+    const { condition } = storeToRefs(filter)
+    const setCondition = condition => { filter.setCondition(condition); showMenu.value = false}
+
+
     
 </script>
 

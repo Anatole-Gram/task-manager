@@ -3,7 +3,7 @@
     <div class="content container">
         <TodosMenu 
             :slider="slider"
-            @closeSlider="todos.slider=false" />
+            @closeSlider="todos.setSlider(false)" />
 
         <TodosCurrentItem v-if="slider"
             :item="currentItem" 
@@ -19,7 +19,6 @@
 
 <script setup>
     import {useTodos} from '@/store/todos';
-    import { useFilters } from '@/store/filters';
     const todos = useTodos()
 
     const {list, slider, closeSlider, currentIndex, currentItem, setCurrent} = useSlider(todos)
