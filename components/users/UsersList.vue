@@ -12,7 +12,7 @@
                     :user="user" 
                     :selected="current===user.id"
                     @sliderReverse="sliderFrom(index)"
-                    @removeFromList="rmFromList(user.id)"
+                    @removeFromList=" rmFromList(user.id)"
                     @click="setCurrent(user.id)" />
                 
             </transition-group>
