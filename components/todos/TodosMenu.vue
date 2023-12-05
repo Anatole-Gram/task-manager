@@ -3,7 +3,7 @@
 
         <template v-if="!slider">
         <FilterForUsers @filterForSelected="filterByUsers" />
-        <FilterForCondition :conditionMap="conditionMap"  @returnCondition="(property)=>condition=property" />
+        <FilterForCondition :conditionMap="conditionMap" />
         </template>
 
         <SliderMenu 

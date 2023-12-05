@@ -12,7 +12,7 @@
             </div>
 
             <button 
-                @click.stop="emit('reverseStatus'), todo.status = !todo.status"
+                @click.stop="emit('reverseStatus')"
                 class="todo-item__status"> 
                     {{ todo.status ? `завершено` : `не завершено` }} 
             </button>

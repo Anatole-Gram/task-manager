@@ -1,19 +1,4 @@
 <template>
-    <!-- <div class="filter-wraper">
-        <button @click="showMenu=!showMenu"> статус: {{ selected.name }} </button>
-        <ul v-show="showMenu" class="box-black">
-            <li v-for="(val, index) in condition.name" :key="index">
-                <label :for="`condition${val}`"
-                    :class="{'selected-item': index===position}">
-                        {{ val }}
-                </label>
-                <input type="radio" name="condition" 
-                    :value="index" 
-                    v-model="position" 
-                    :id="`condition${val}`">
-            </li>
-        </ul>
-    </div> -->
     <div class="filter-wraper">
         <button @click="showMenu=!showMenu"> статус: {{ conditionMap.get(condition) }} </button>
         <ul v-show="showMenu" class="box-black">
@@ -46,7 +31,7 @@ import {useFilters} from "@/store/filters"
     const showMenu = ref(false)
 
     const { condition } = storeToRefs(filter)
-    const setCondition = condition => { filter.setCondition(condition); showMenu.value = false}
+    const setCondition = newCondition => { filter.setCondition(newCondition); showMenu.value = false}
 
 
     

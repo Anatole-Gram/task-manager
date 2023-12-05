@@ -5,7 +5,7 @@ const sliderStates =  {
 }
 
 const sliderActions = {
-    setSlider(state) { this.slider = state },
+    setSlider(condition) { this.slider = condition },
     setCurrentIndex(index) {this.currentIndex = index},
     sliderToggle(index) { this.slider = !this.slider; this.currentIndex = index }
 }

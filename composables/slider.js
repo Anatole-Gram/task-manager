@@ -1,8 +1,8 @@
+import { storeToRefs } from "pinia"
+
 export const useSlider = (store) => {
-    const list = computed(() => store.filteredList)
-    const slider = computed(() => store.slider)
-    const closeSlider = () => store.slider = false
-    const currentIndex = computed(() => store.currentIndex)
+    const { filteredList: list, slider, currentIndex } = storeToRefs(store)
+    const closeSlider = () => store.setSlider(false)
     const currentItem = computed(() => store.filteredList[store.currentIndex])
     const setCurrent = (idx, size=list.value.length-1) => {
         if(idx < 0) {store.setCurrentIndex(size)}

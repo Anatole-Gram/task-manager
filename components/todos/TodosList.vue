@@ -41,7 +41,6 @@
     
     const {current, setCurrent} = useInteractiveList()
     const todoSender = useTodoSenderIdentifier()
-
     // animation for list item
     let {counterDelays, delayMult, onBeforeEnter, onEnter, onBeforeLeave} = useAnimationDelayFromList(0.03, ()=> props.list.length)
 
