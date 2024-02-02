@@ -1,0 +1,14 @@
+.todo {
+    // todo__btn-status
+    &__btn-status {
+        &:focus {
+            animation: {
+                name: gradientOverlay;
+                duration: 2s;
+                timing-function: linear;
+                iteration-count: infinite;
+            };
+        }
+
+    }
+}

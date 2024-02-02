@@ -1,10 +1,10 @@
 <template>
-    <div class="footer">
+    <div>
         Footer
     </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .footer {
         grid-area: footer;
         min-height: 50px;

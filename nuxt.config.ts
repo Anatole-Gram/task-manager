@@ -20,6 +20,7 @@ export default defineNuxtConfig({
         '@/assets/style/menu/modal.scss',
         '@/assets/style/profile/profile.scss',
         '@/assets/style/task/task.scss',
+        '@/assets/style/todo/todo.scss',
         '@/assets/style/form.scss',
         '@/assets/style/animations.scss'
     ],

@@ -32,15 +32,9 @@
             type: [Function]
         }
     })
-    const current = ref(0)
-    const setCurrent = (id) => {
-        id === current.value ? current.value = 0 : current.value = id
-    }
-
-    // animation for list item
+    const { current, setCurrent } = useInteractiveList(() => props.list.length)
+    
     let {counterDelays, delayMult, onBeforeEnter, onEnter, onBeforeLeave} = useAnimationDelayFromList(0.03, ()=> props.list.length)
-
-
 </script>
     
 <style lang="scss" scoped>

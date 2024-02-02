@@ -47,7 +47,9 @@ const showMenu = ref(false)
 watch( () => showMenu.value, show => !show && updSearchByName(false))
 watch(selected.value, (newVal, oldVal) => { emit('filterForSelected', newVal); determinateSelectedIsFull() })
 
-const filterAction = () => { selectedIsFull.value ? resetSelected() : selectAll(list.value) }
+const resetAll = () => { resetSelected(); users.resetSliderStates() }
+const filterAction = () => { selectedIsFull.value ? resetAll() : selectAll(list.value) }
+
 const filterListByName = (exp) => { listBySearch.value = users.list.filter(user=> exp.test(user.name||user.surname)) }
 
 const list = computed(() => searchByName.value ? listBySearch.value : users.list)

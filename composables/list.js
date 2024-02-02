@@ -1,8 +1,9 @@
-export function useInteractiveList() {
+export function useInteractiveList(length) {
     const current = ref(0)
     const setCurrent = (id) => {
         id === current.value ? current.value = 0 : current.value = +id
     }
+    watch(length, (newVal, oldVal) => {newVal === 0 && setCurrent(0)})
     return {current, setCurrent}
 }
 

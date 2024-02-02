@@ -3,22 +3,19 @@
       <TheHeader />
     </div>
       <NuxtPage />
+      <div class="modals-test"></div>
     <div class="footer">
       <TheFooter />
     </div>
 </template>
 
 <script setup>
-
+  import { renderToString } from 'vue/server-renderer'
   import {useUsers} from '@/store/users';
   import { useProfile } from './store/profile';
   const users = useUsers()
   const profile =  useProfile()
   
-//remove
-// const {data} =  await useAsyncData('user', () => 
-// $fetch(`http://project-lucy.fun/api/users/user?id=1`, {method: "GET"}))
-// remove
 
   async function init() {
       const loggedUser = localStorage.getItem('userId')
@@ -31,6 +28,16 @@
 
     onMounted(()=> {
       init()
+    })
+
+    onServerPrefetch(async () => {
+
+      // const ctx = {}
+      // console.log(useNuxtApp())
+      const app = useNuxtApp()
+      const html = await renderToString(app) 
+      console.log(ctx.teleports)
+
     })
 </script>
 

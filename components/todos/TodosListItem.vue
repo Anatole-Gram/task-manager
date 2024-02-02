@@ -15,6 +15,8 @@
                 @click.stop="emit('reverseStatus')"
                 class="todo-item__status"> 
                     {{ todo.status ? `завершено` : `не завершено` }} 
+                    <ButtonGradientOverlay 
+                        :tracked="todo.status" />
             </button>
     </li>
 </template>
@@ -34,7 +36,6 @@
 
     const emit = defineEmits(['sliderReverse', 'reverseStatus'])
     const shortTitle = useTrimLine(props.todo.title, 35)
-
     
 </script>
 
@@ -60,8 +61,11 @@
             }
         }
         &__status {
+
+            position: relative;
             height: 28px;
             width: 120px;
+            background-color: inherit;
             border: 1px solid #212529;
             border-radius: 4px;
             color: #212529;
