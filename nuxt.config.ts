@@ -22,7 +22,8 @@ export default defineNuxtConfig({
         '@/assets/style/task/task.scss',
         '@/assets/style/todo/todo.scss',
         '@/assets/style/form.scss',
-        '@/assets/style/animations.scss'
+        '@/assets/style/animations.scss',
+        '@/assets/style/loader/loader.scss',
     ],
     vite: {
         css: {

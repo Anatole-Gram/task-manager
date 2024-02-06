@@ -51,20 +51,7 @@
             height: $ava-height;
             margin: $ava-margin;
         }
-        & button {
-            height: 36px;
-            margin: 0 $ava-margin 16px $ava-margin;
-            color: rgba(255, 255, 255, 0.55);
-            border-radius: 4px;
-            &:hover {
-                color: #fff;
-            }
-        }
     }
-
-    
-
-
 
 
 </style>

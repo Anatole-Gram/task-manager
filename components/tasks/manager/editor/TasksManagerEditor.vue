@@ -29,7 +29,7 @@
     <TasksManagerCreator v-else
         :menuBtn="['сбросить', 'сохранить']"
         :existingTask="useCloneByListsKeys(task, ['id', 'title', 'description'])"
-        :close="()=>taskEditor = false"
+        :close="()=>taskEditor=false"
         @create="saveChangeTask"
         @delete="rmTask"
     />

@@ -3,15 +3,28 @@
 <template>
     <button v-if="active" v-text="'выберите изображение'"
         @click="loader=true"
-        class="box-black"> </button>
+        class="btn box-black"> </button>
 
-    <!-- <Teleport to=".footer" :disabled="false">
-        <div v-if="loader">
-            <h1> teleported loader  </h1>
-            <button 
-                @click="loader=false">Close</button>
+<ClientOnly>
+    <Teleport to=".content" :disabled="false">
+        <div v-if="loader"
+            class="loader-modal">
+
+            <ButtonClose 
+                :topRight="[45, 8]"
+                @closeAction="()=>loader=false" />
+
+                <div class="loader__content-wraper">
+                    <img src="" alt="user photo">
+                    <div class="loader__menu">
+                        <input type="file">
+                    </div>
+                    
+                    <!-- <canvas ref="canvasElement" width="200" height="200"></canvas>     -->
+                </div>
         </div>
-    </Teleport> -->
+    </Teleport>
+</ClientOnly>
 
 </template>
 
@@ -25,9 +38,21 @@
 </script>
 
 <style lang="scss" scoped>
-    div {
-        width: 100%;
-        height: 100%;
-        background-color: red;
+    .loader-modal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
+    button {
+        margin: 8px;
+        color: rgba(255, 255, 255, 0.55);
+        &:hover {
+            color: #fff;
+        }
+    }
+    canvas {
+        border: 2px solid black;
+        width: 200px;
+        height: 200px;
+        }
 </style>

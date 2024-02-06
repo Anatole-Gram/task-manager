@@ -1,10 +1,9 @@
 <template>
     <form class="main-box main-box--white">
-        <button v-if="close"
-            @click.prevent="close"
-            class="bnt-close btn-circle"
-        >
-        </button>
+        
+        <ButtonClose v-if="close"
+            :topRight="[8, 8]" 
+            @closeAction="close" />
 
         <div class="form-check-item main-box main-box--black">
 
@@ -122,25 +121,25 @@
         @include standartFormItemsPorperty;
 
     }
-    .bnt-close {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        background: {
-            color: rgba(255,255,255);
-            image: url(/img/btn/close-win.svg);
-            size: 70%;
-            repeat: no-repeat;
-            position: center;
-        }
-        &:hover {
-            transform: scale(1.1);
-            transition-delay: 0.2s;
-        }
-    }
+    // .bnt-close {
+    //     width: 30px;
+    //     height: 30px;
+    //     border-radius: 50%;
+    //     position: absolute;
+    //     top: 8px;
+    //     right: 8px;
+    //     background: {
+    //         color: rgba(255,255,255);
+    //         image: url(/img/btn/close-win.svg);
+    //         size: 70%;
+    //         repeat: no-repeat;
+    //         position: center;
+    //     }
+    //     &:hover {
+    //         transform: scale(1.1);
+    //         transition-delay: 0.2s;
+    //     }
+    // }
     .creator-menu {
         display: flex;
         justify-content: space-between;
