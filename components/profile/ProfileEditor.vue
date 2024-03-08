@@ -32,7 +32,7 @@
     const { setUpdateAllowed } = inject('profile')
 
     const checkCorrect = useFormInspector(correctName, correctSurname, correctPosition, correctPhone, correctMail)
-
+// ! add immediate and remove onBeforeUnmount
     watch(() => user, (newVal, oldVal) => {
         setUpdateAllowed(checkCorrect())
     }, {deep: true})

@@ -1,5 +1,5 @@
 .loader {
-
+    //loader-modal
     &-modal {
         grid-area: main;
         background: {
@@ -7,9 +7,10 @@
         };
         z-index: 11;
     }
+    //loader__content-wraper
     &__content-wraper{
-        width: 300px;
-        height: 500px;
+        width: 550px;
+        height: 450px;
         display: grid;
         grid-template-rows: 4fr 1fr;
         grid-template-columns: 1fr;
@@ -17,12 +18,59 @@
         background-color: #fff;
         box-shadow: 2px 2px 8px 5px $mainBlack, -2px -2px 8px 5px $mainBlack;
 
-        & image {
-            grid-area: img;
-        }
     }
-    .loader__menu {
+    &__img-wraper {
+        grid-area: img;
+        position: relative;
+        display: flex;
+        align-self: center;
+        justify-self: center;
+    }
+    //loader__overlay
+    &__overlay {
+        width: 200px;
+        height: 200px;
+        grid-area: img;
+        position: absolute;
+        border: 2px solid black;
+
+        &:hover { 
+            cursor: cell;
+        }
+        &-corner {
+            width: 10px;
+            height: 10px;
+            background: red;
+            position: absolute;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        & :nth-child(1) {
+            top: 0;
+            left: 0;
+        }
+        & :nth-child(2) {
+            top: 0;
+            right: 0;
+        }
+        & :nth-child(3) {
+            bottom: 0;
+            right: 0;
+        }
+        & :nth-child(4) {
+            bottom: 0;
+            left: 0;
+        }
+
+    }
+    //loader__menu
+    &__menu {
         grid-area: menu;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     
