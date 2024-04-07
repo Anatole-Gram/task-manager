@@ -1,13 +1,15 @@
 <template>
     <div class="box">
-        <img :src="`http://project-lucy.fun/${url}`" width="200" height="200" alt="user photo"
+        <img :src="imgUrl" ref="avatar" width="200" height="200" alt="user photo"
             @error="imgErr($event, '/img/img-nf.jpg')">
     
-        <LoaderImage :active="editor"></LoaderImage>
+        <LoaderImage :active="editor" @setNewFile="setFile"></LoaderImage>
     </div>
 </template>
 
 <script setup>
+import { useProfile } from '~~/store/profile'
+
     const props = defineProps({
         url: {
             type: [String]
@@ -16,7 +18,33 @@
             type: [Boolean]
         }
     })
+    const {setUploadImgFunction} = inject('profile')
+    const {updateDraftProperty} = inject('draftProfile')
 
+    const avatar = ref(null)
+    const file =  reactive ({
+        blob: null
+    })
+    const setFile =  async newVal => {
+            await Object.assign(file, newVal)
+        
+        if(file.blob) {
+            setUploadImgFunction(
+                async () => {
+                    const data = new FormData()
+                    data.append('img', file.blob)
+                    await fetch(`${useApiUrl()}profile/updt-ava?id=${useProfile().user.id}`, {
+                        method: 'POST',
+                        body: data
+                    })
+                        .then(response => response.json())
+                        .then(data => updateDraftProperty('img', data.path))
+                        .catch(err => alert(err))
+                }
+            )
+        }
+    }
+    const imgUrl =  computed(() => file.blob ? URL.createObjectURL(file.blob) : `http://project-lucy.fun/${props.url}`)
     const imgErr = useImgNoLoad
 </script>
 

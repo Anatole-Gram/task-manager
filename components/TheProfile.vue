@@ -31,16 +31,24 @@ import { storeToRefs } from 'pinia';
         draftProfile[key] = value;
         setUpdateAllowed(true)
     }
-
-    
+    let uploadImgToServer = ref(null)
+    const setUploadImgFunction = (fn) => uploadImgToServer.value = fn
+    watch(() => uploadImgToServer.value, (newVal, oldVal) => newVal())
 
     provide('draftProfile', {draftProfile, updateDraftProperty})
 
     watch(() => editor.value, active => {if(active) Object.assign(draftProfile, useCloneByListsKeys(profile.user, ['name', 'surname', 'position', 'phone', 'mail', 'note', 'img']))})
     //
 
-    const {updateProfile} = profile
-    provide('profile', {updateProfile, setUpdateAllowed})
+    const {updateProfile: updProfile} = profile
+    const updateProfile = async (modification=draftProfile) => {
+        if(uploadImgToServer) {
+            await uploadImgToServer()
+        }
+        await updProfile(modification)
+    } 
+
+    provide('profile', {updateProfile, setUpdateAllowed, setUploadImgFunction})
 
     const loader = computed(() => !Boolean(profile.user.id))
 

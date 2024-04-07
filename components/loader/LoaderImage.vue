@@ -16,7 +16,6 @@
             <ButtonClose 
                 :topRight="[45, 8]"
                 @closeAction="()=>loader=false" />
-
                 <div 
                     @mousedown.prevent="false"
                     class="loader__content-wraper">
@@ -66,14 +65,10 @@
                       </div>
                     </div>
                     <div class="loader__menu">
-
-                        {{ overlayPosition }} 
-                        
-                        {{ `translateX: ${translate.x} translateY: ${translate.y}` }}
-
-                        {{ `width: ${overlaySize.width} height: ${overlaySize.height}` }}
-
-                        {{ `scale: ${scale.value}` }}
+                        <button
+                            @click="cropImg(img)"
+                            style="color: black;"
+                        > Test crop image </button>
                     </div>
                     
                     <!-- <canvas ref="canvasElement" width="200" height="200"></canvas>     -->
@@ -85,11 +80,14 @@
 </template>
 
 <script setup>
+import { useProfile } from '~~/store/profile'
+
     const props = defineProps({
         active: {
             type: [Boolean]
         }
     })
+    const emit = defineEmits(['setNewFile'])
     const loader = ref(false)
     const overlay = ref(null)
     const wraper = ref(null)
@@ -191,7 +189,6 @@
         overlaySize.width *= scale.value
         overlaySize.height *= scale.value
         scale.value = 1
-        console.log(`set size: width: ${overlaySize.width} height: ${overlaySize.height}`)
     }
     const resizeOverlay = (position) => {
         const pathX = anchor.x - position.x
@@ -242,6 +239,19 @@
         anchor.scale && resizeOverlay(newVal)
     })
 
+    const cropImg = async (img) => {
+        const canva = document.createElement('canvas')
+        canva.width = overlaySize.width
+        canva.height = overlaySize.height
+        const context = canva.getContext('2d')
+        const drawingOptions = [img, - overlayPosition.left, -overlayPosition.top, img.offsetWidth, img.offsetHeight]
+        context.drawImage(...drawingOptions);
+        const croppedImg = await new Promise(resolve => canva.toBlob(blob => {
+            blob.originalname = `ava_${useProfile().user.id}.png`
+            resolve(blob)
+        }))
+        emit('setNewFile', {blob: croppedImg})
+    }
 
 
 </script>
