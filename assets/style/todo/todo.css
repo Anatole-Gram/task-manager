@@ -1,0 +1,6 @@
+.todo__btn-status:focus {
+  animation-name: gradientOverlay;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}/*# sourceMappingURL=todo.css.map */

@@ -31,9 +31,20 @@ import { storeToRefs } from 'pinia';
         draftProfile[key] = value;
         setUpdateAllowed(true)
     }
-    let uploadImgToServer = ref(null)
-    const setUploadImgFunction = (fn) => uploadImgToServer.value = fn
-    watch(() => uploadImgToServer.value, (newVal, oldVal) => newVal())
+
+    const avaBlob = ref(null)
+    const setAvaBlob = blob => avaBlob.value = blob
+    const uploadImgToServer = async () => {
+        const data = new FormData()
+        data.append('img', avaBlob.value)
+        await fetch(`${useApiUrl()}profile/updt-ava?id=${profile.user.id}`, {
+            method: "POST",
+            body: data
+        })
+            .then(response => response.json())
+            .then(data => updateDraftProperty('img', data.path))
+            .catch(err => alert(err))
+    }
 
     provide('draftProfile', {draftProfile, updateDraftProperty})
 
@@ -42,13 +53,11 @@ import { storeToRefs } from 'pinia';
 
     const {updateProfile: updProfile} = profile
     const updateProfile = async (modification=draftProfile) => {
-        if(uploadImgToServer) {
-            await uploadImgToServer()
-        }
+        avaBlob.value && await uploadImgToServer()
         await updProfile(modification)
-    } 
+    }
 
-    provide('profile', {updateProfile, setUpdateAllowed, setUploadImgFunction})
+    provide('profile', {updateProfile, setUpdateAllowed, setAvaBlob, avaBlob})
 
     const loader = computed(() => !Boolean(profile.user.id))
 

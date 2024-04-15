@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: unset;
+}
+
+input {
+  border: unset;
+  outline: unset;
+  background: unset;
+}
+
+select {
+  border: unset;
+  outline: unset;
+}
+
+button {
+  border: unset;
+  outline: unset;
+  background-color: unset;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+textarea {
+  border: unset;
+  outline: unset;
+}
+
+label:hover {
+  cursor: pointer;
+}/*# sourceMappingURL=normalize.css.map */

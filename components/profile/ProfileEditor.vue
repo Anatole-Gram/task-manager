@@ -2,7 +2,7 @@
     <div class="content__main">
         <div class="profile">
             <section class="profile__main-edit">
-                <ProfileItemAva :url="user.img" :editor="true"/>
+                <ProfileItemAva :url="imgUrl" :editor="true" style="z-index: 13;"/>
                 <ProfileItemForm :user="user"/>
             </section>
             
@@ -15,6 +15,9 @@
 </template>
 <script setup>
 
+    const {avaBlob} = inject('profile')
+    const imgUrl = computed(() => avaBlob.value ? URL.createObjectURL(avaBlob.value) : `${useUrl()+user.img}`)
+ 
     // use to update draft profile
     const {draftProfile: user, updateDraftProperty} = inject('draftProfile')
 
@@ -32,14 +35,11 @@
     const { setUpdateAllowed } = inject('profile')
 
     const checkCorrect = useFormInspector(correctName, correctSurname, correctPosition, correctPhone, correctMail)
-// ! add immediate and remove onBeforeUnmount
+
     watch(() => user, (newVal, oldVal) => {
         setUpdateAllowed(checkCorrect())
-    }, {deep: true})
+    }, {deep: true, immediate: true})
 
-    onBeforeUnmount(() => {
-        setUpdateAllowed(false)
-    })
 </script>
 
 <style lang="scss" scoped>

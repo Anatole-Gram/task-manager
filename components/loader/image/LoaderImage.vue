@@ -2,10 +2,10 @@
 
 <template>
 
-    <label for="file-loader" 
+    <label v-if="active" for="file-loader" 
         v-text="'выберите изображение'"
         class="btn box-black" />
-    <input type="file" id="file-loader" accept="image/*"
+    <input type="file" id="file-loader" ref="input" accept="image/*"
         @change="fileReader($event)">
 
 <ClientOnly>
@@ -15,7 +15,7 @@
 
             <ButtonClose 
                 :topRight="[45, 8]"
-                @closeAction="()=>loader=false" />
+                @closeAction="closeLoader" />
                 <div 
                     @mousedown.prevent="false"
                     class="loader__content-wraper">
@@ -64,14 +64,7 @@
                                 class="loader__overlay-corner"></div>
                       </div>
                     </div>
-                    <div class="loader__menu">
-                        <button
-                            @click="cropImg(img)"
-                            style="color: black;"
-                        > Test crop image </button>
-                    </div>
-                    
-                    <!-- <canvas ref="canvasElement" width="200" height="200"></canvas>     -->
+                    <LoaderImageMenu @cropImg="cropImg(img)" @saveCropped="loader=false"></LoaderImageMenu>
                 </div>
         </div>
     </Teleport>
@@ -89,6 +82,7 @@ import { useProfile } from '~~/store/profile'
     })
     const emit = defineEmits(['setNewFile'])
     const loader = ref(false)
+    const input = ref(null)
     const overlay = ref(null)
     const wraper = ref(null)
 
@@ -108,6 +102,7 @@ import { useProfile } from '~~/store/profile'
             img.src = reader.result
         });
         (/\.(jpe?g|png)$/i.test(event.target.files[0].name)) && reader.readAsDataURL(event.target.files[0]);
+        event.target.value = ''
     }
 
     const img = ref(null)
@@ -250,10 +245,17 @@ import { useProfile } from '~~/store/profile'
             blob.originalname = `ava_${useProfile().user.id}.png`
             resolve(blob)
         }))
-        emit('setNewFile', {blob: croppedImg})
+        emit('setNewFile', croppedImg)
     }
 
+    const closeLoader = () => {
+        emit('setNewFile', null)
+        loader.value = false
+    } 
 
+    onUnmounted(() => {
+        emit('setNewFile', null)
+    })
 </script>
 
 <style lang="scss" scoped>

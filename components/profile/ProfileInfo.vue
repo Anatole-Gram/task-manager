@@ -2,7 +2,7 @@
     <div class="content__main">
         <div class="profile">
             <section class="profile__main">
-                <ProfileItemAva :url="user.img" />
+                <ProfileItemAva :url="`${useUrl()+user.img}`"  :editor="false"/>
                 <ProfileItemInfo :user="user" :editor-state="false" />
             </section>
 
@@ -25,10 +25,6 @@
             type: [Object]
         }
     })
-
-    // watch(() => props.user, (newVal, oldVal) => {
-    //     console.log(`USER: ${newVal}`)
-    // })
 </script>
 
 <style lang="scss">
