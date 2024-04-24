@@ -1,4 +1,3 @@
-// export const useApiUrl = () => 'http://project-lucy.fun/api/'
-// export const useUrl = () => `http://project-lucy.fun/`
-export const useApiUrl = () => 'http://localhost:3001/api/'
-export const useUrl = () => `http://localhost:3001/`
+
+export const useApiUrl = () => process.client ? 'http://project-lucy.ru/api/' : 'http://localhost:3000/api/'
+export const useUrl = () => process.client ? `http://project-lucy.ru/` : `http://localhost:3000/`
