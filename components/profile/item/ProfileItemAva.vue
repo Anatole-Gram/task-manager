@@ -31,6 +31,7 @@
     .box {
         display: flex;
         flex-direction: column;
+        height: fit-content;
         position: relative;
         margin: 0 8px 0 0;
 
@@ -44,7 +45,6 @@
             top: $ava-margin;
             clip-path: polygon(0% 0%,100% 0,100% 8%,75% 8%,70% 5%,30% 5%,30% 5%,25% 8%,0 8%,0% 0%, 0 92%,25% 92%,30% 95%,70% 95%,75% 92%,100% 92%,100% 100%,0% 100%,0% 92%);
             border-radius: 3px;
-            // background-color: rgba(0,25,25,.25);
             background: linear-gradient(45deg, rgba(33,37,41,1) 0%, rgba(33,37,41,0.9) 60%, rgba(33,37,41,0.75) 100%);
         }
         & > img {
