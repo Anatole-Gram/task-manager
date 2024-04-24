@@ -49,7 +49,7 @@
     const taskEditor = ref(false)
     const saveChangeTask = async task => {
         await tasks.updTask(task)
-        taskEditor = false
+        taskEditor.value = false
     }
 
     const {current: currentWorker, setCurrent: setCurrentWorker} = useInteractiveList()
@@ -60,9 +60,7 @@
 
     watch(currentWorker, (newVal, oldVal) => setCurrentTodo(0))
 
-    //remove
-    // const workerTodos = computed(() => tasks.currentTodosForUser(currentWorker.value))
-    //remove
+
     const todo = computed(() =>  tasks.currentTodosById(currentTodo.value)||{title: '', comment: '', destination: currentWorker.value, sender: props.task.userId, taskId: props.task.id})
 
     const {removeTask, closeTaskManager} = inject('task')
