@@ -19,6 +19,7 @@ export default defineNuxtConfig({
         '@/assets/style/menu/buttons.scss',
         '@/assets/style/menu/modal.scss',
         '@/assets/style/profile/profile.scss',
+        '@/assets/style/profile/profile-editor.scss',
         '@/assets/style/task/task.scss',
         '@/assets/style/todo/todo.scss',
         '@/assets/style/form.scss',
@@ -29,7 +30,7 @@ export default defineNuxtConfig({
         css: {
           preprocessorOptions: {
             scss: {
-              additionalData: '@import "@/assets/style/variables.scss";'
+              additionalData: '@import "@/assets/style/variables.scss"; @import "@/assets/style/mixin";'
             }
           }
         }

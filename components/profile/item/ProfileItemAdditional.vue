@@ -1,5 +1,5 @@
 <template>
-    <ul>
+    <ul class="profile-addition">
         <li>
 
         </li>

@@ -1,0 +1,7 @@
+// main box
+@mixin mainBoxStyle($bg, $borderR) {
+    background: $bg;
+    border-radius: $borderR;
+    box-shadow: 1px -1px 4px 1px #63636366, -1px 1px 4px 1px #63636366;
+
+}

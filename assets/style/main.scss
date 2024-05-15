@@ -45,7 +45,7 @@
     &__main {
         grid-area: main;
         height: 100%;
-        padding: 0 8px;
+        padding: 16px 8px;
         overflow-y: auto;
     }
 
@@ -131,43 +131,73 @@
     }
 }
 
-.text-btn {
-    font:  {
-        family: 'Verdana';
-    }
-}
+// .text-btn {
+//     font:  {
+//         family: 'Verdana';
+//     }
+// }
+// .text {
+//     font: {
+//         family: 'Verdana';
+//     }
+//     &-input {
+//         font: {
+//             size: 12px;
+//             weight: 400;
+//         }
+//     }
+//     &-label {
+//         font: {
+//             size: 14px;
+//             variant: small-caps;
+//             weight: 500;
+//         }
+//     }
+//     &-error {
+//         font: {
+//             family: 'Comforta';
+//             size: 10px;
+//         }
+//         color: red;
+//     }
+//     &--red {
+//         color: red;
+//     }
+//     &--green {
+//         color: green;
+//     }
+//     &--invisible {
+//         opacity: 0;
+//     }
+// }
 .text {
-    font: {
-        family: 'Verdana';
-    }
-    &-input {
+    //text-title
+    &-title {
         font: {
-            size: 12px;
-            weight: 400;
+            family: 'Comforta'
         }
     }
-    &-label {
-        font: {
-            size: 14px;
-            variant: small-caps;
-            weight: 500;
-        }
-    }
-    &-error {
+    //text-content
+    &-content{
         font: {
             family: 'Comforta';
-            size: 10px;
+            size: 14px;
         }
-        color: red;
     }
-    &--red {
-        color: red;
+    //text-btn
+    &-btn {
+        font: {
+            family: 'Verdana'
+        }
     }
-    &--green {
-        color: green;
-    }
-    &--invisible {
-        opacity: 0;
+    //text-label
+    &-label {
+        font: {
+            family: 'Jura';
+            size: 18px;
+            weight: 500;
+            variant: small-caps;
+        }
     }
 }
 
