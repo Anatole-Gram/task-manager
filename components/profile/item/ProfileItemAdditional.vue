@@ -1,5 +1,5 @@
 <template>
-    <ul class="profile-addition">
+    <ul class="profile-additional text-content">
         <li>
 
         </li>
@@ -9,7 +9,7 @@
         </li>
 
         <li>
-            задания: &nbsp; <span>всего</span> &nbsp; 13 &nbsp; <span>выполнено</span> &nbsp; 5 &nbsp; <span>новые</span> &nbsp; 4 &nbsp;
+            <span>задания</span>: &nbsp; <span>всего</span> &nbsp; 13 &nbsp; <span>выполнено</span> &nbsp; 5 &nbsp; <span>новые</span> &nbsp; 4 &nbsp;
         </li>
 
         <li>
@@ -49,19 +49,19 @@
     }
 
     ul {
-        height: 100%;
+        height: 50%;
         position: relative;
         background-color: inherit;
 
         &::before {
             content: '';
             @include arrowArea($arrowLeft, $arrowWidth, 100%, inherit);
-            @include arrowPosition(top, left, 0, -1px, 2);
+            @include arrowPosition(top, left, 0, -2px, 2);
         }
         &::after {
             content: '';
             @include arrowArea($arrowRight, $arrowWidth, 100%, inherit);
-            @include arrowPosition(top, right, 0, -1px, 2);
+            @include arrowPosition(top, right, 0, -2px, 2);
 
         }
         
@@ -76,11 +76,7 @@
             background-color: #212529;
             background: linear-gradient(45deg,#212529,rgba(33,37,41,.9) 60%,rgba(33,37,41,.75));
             color: #fff;
-            font: {
-                family: "Comforta";
-                size: 14px;
-                weight: 500;
-            };
+            margin: 1px;
 
             &:nth-child(2) {
                 top: 0;

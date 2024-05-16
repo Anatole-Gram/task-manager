@@ -199,6 +199,31 @@
             variant: small-caps;
         }
     }
+
+    @media screen and (min-width: 768px) {
+        //text-title
+        &-title {
+            font: {
+                size: 24px;
+            };
+        }
+        //text-content
+        &-content {
+            font: {
+                size: 18px;
+            };
+        }
+        //text-btn
+        &-btn {
+
+        }
+        //text-label
+        &-label {
+            font: {
+                size: 24px;
+            };
+        }
+    }
 }
 
 #__nuxt {

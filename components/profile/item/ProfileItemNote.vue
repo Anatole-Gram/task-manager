@@ -1,7 +1,7 @@
 <template>
 
         <div class="profile-note">
-            <label for="user-note" class="profile-note__title text-title">записка</label>
+            <label for="user-note" class="profile-note__title text-label">записка</label>
             <textarea v-if="editorState" 
                 @input="emit('inInput', 'note', $event.target.value)"
                 :value="note"
