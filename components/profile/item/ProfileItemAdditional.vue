@@ -49,7 +49,7 @@
     }
 
     ul {
-        height: 50%;
+        height: 100%;
         position: relative;
         background-color: inherit;
 
